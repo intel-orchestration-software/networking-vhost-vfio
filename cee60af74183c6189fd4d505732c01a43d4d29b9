@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "338b6746_9819296c",
+        "filename": "networking_vhost_vfio/tests/test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T15:11:43Z",
+      "side": 1,
+      "message": "hehe i like :)\nwe good self documenting code.",
+      "range": {
+        "startLine": 8,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 11
+      },
+      "revId": "cee60af74183c6189fd4d505732c01a43d4d29b9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
