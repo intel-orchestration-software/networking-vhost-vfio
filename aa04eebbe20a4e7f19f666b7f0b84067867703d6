@@ -1,0 +1,335 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "681a9ae5_d579c170",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "we will not have a cli so this should be removed",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a806b80b_3e0d48ab",
+        "filename": "doc/source/contributor/contributing.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "we do not need this as we deleted the top level contributing.rst\ncan you delete this folder",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21e1fe3a_98dad902",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "this can be deleted",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 20
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55b92617_fd40b18c",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "same we should not need a cli",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 12
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cce042d2_c699bc52",
+        "filename": "doc/source/install/common_configure.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "i think we can delete this",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72e11109_13da8dd7",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "project",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 29
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b9ba44a_04ba0f46",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "project",
+      "range": {
+        "startLine": 4,
+        "startChar": 26,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ae69545_92f8ddd6",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "project",
+      "range": {
+        "startLine": 6,
+        "startChar": 26,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e115418_07914ddc",
+        "filename": "doc/source/install/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "project",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 34
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b71fca82_ebb54de7",
+        "filename": "doc/source/install/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "we will not be assuming openstack  is pre installed.",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66de2c1b_4005e509",
+        "filename": "doc/source/install/install.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "devstack downloaded...\n\nlink to basic instruction do download devstack and install its prereques.",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32335878_1396ced7",
+        "filename": "doc/source/library/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "we could keep this for the mdev lib or we could just put it in the readme",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03145781_5f043a2b",
+        "filename": "doc/source/reference/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "i dont think we will need this so you can remove the refernces folder",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62e99b00_85c7e6d5",
+        "filename": "doc/source/user/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "we wont have a user guide so remvoe the user folder",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0320fe30_ed6ea431",
+        "filename": "networking_vhost_vfio/tests/test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "why delete this.\nthe test will not pass unless atleast one test exists.\nwe should keep this.",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "288b96d6_e3f5bcb9",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "we can delete every thin below this.",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0093e93c_7e6c31cb",
+        "filename": "tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-11T18:58:29Z",
+      "side": 1,
+      "message": "install -r {toxinidir}/requirements.txt ...",
+      "range": {
+        "startLine": 8,
+        "startChar": 22,
+        "endLine": 8,
+        "endChar": 30
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
