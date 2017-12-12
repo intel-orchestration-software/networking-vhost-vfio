@@ -11,4 +11,15 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Framework for mdev_vfio."""
+"""Setup privsep decorator."""
+
+from oslo_privsep import capabilities as c
+from oslo_privsep import priv_context
+
+mdev_context = priv_context.PrivContext(
+    "networking_vhost_vfio",
+    cfg_section="networking_vhost_vfio_mdev",
+    pypath=__name__ + ".mdev_context",
+    capabilities=[c.CAP_DAC_OVERRIDE,
+                  c.CAP_FOWNER],
+)
