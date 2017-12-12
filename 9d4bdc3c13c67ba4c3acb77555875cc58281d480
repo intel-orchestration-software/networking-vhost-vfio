@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0910a58_f292d78b",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-12T18:15:38Z",
+      "side": 1,
+      "message": "nit: we do not have an api/service",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "9d4bdc3c13c67ba4c3acb77555875cc58281d480",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
