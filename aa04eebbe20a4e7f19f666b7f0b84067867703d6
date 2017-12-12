@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ee55cfb_00d48ad2",
+        "filename": "doc/source/cli/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "681a9ae5_d579c170",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a806b80b_3e0d48ab",
         "filename": "doc/source/contributor/contributing.rst",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3209a270_875a2d9c",
+        "filename": "doc/source/contributor/contributing.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a806b80b_3e0d48ab",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21e1fe3a_98dad902",
         "filename": "doc/source/index.rst",
         "patchSetId": 1
@@ -47,6 +83,30 @@
       "writtenOn": "2017-12-11T18:58:29Z",
       "side": 1,
       "message": "this can be deleted",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 20
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0098084a_21b6cacc",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21e1fe3a_98dad902",
       "range": {
         "startLine": 18,
         "startChar": 3,
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "c8ff1f1f_d29d0046",
+        "filename": "doc/source/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55b92617_fd40b18c",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 12
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cce042d2_c699bc52",
         "filename": "doc/source/install/common_configure.rst",
         "patchSetId": 1
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "dc8c0c49_9acc65a4",
+        "filename": "doc/source/install/common_configure.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cce042d2_c699bc52",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72e11109_13da8dd7",
         "filename": "doc/source/install/get_started.rst",
         "patchSetId": 1
@@ -110,6 +212,30 @@
       "writtenOn": "2017-12-11T18:58:29Z",
       "side": 1,
       "message": "project",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 29
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc8d43f5_6f395f11",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72e11109_13da8dd7",
       "range": {
         "startLine": 2,
         "startChar": 22,
@@ -145,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "a83335f2_5db74f13",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b9ba44a_04ba0f46",
+      "range": {
+        "startLine": 4,
+        "startChar": 26,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ae69545_92f8ddd6",
         "filename": "doc/source/install/get_started.rst",
         "patchSetId": 1
@@ -165,6 +315,76 @@
       "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d260dcd8_c9d3c823",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ae69545_92f8ddd6",
+      "range": {
+        "startLine": 6,
+        "startChar": 26,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed7e0092_6cd1e67a",
+        "filename": "doc/source/install/get_started.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Did you miss one? ;P",
+      "range": {
+        "startLine": 8,
+        "startChar": 29,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8874e351_20a07d67",
+        "filename": "doc/source/install/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Change this one to project like the last file?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 29
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     },
     {
       "key": {
@@ -208,6 +428,48 @@
     },
     {
       "key": {
+        "uuid": "f138c7d1_a154334b",
+        "filename": "doc/source/install/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e115418_07914ddc",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 34
+      },
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc94d050_0883a477",
+        "filename": "doc/source/install/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b71fca82_ebb54de7",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66de2c1b_4005e509",
         "filename": "doc/source/install/install.rst",
         "patchSetId": 1
@@ -219,6 +481,24 @@
       "writtenOn": "2017-12-11T18:58:29Z",
       "side": 1,
       "message": "devstack downloaded...\n\nlink to basic instruction do download devstack and install its prereques.",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "877c1537_05f4939f",
+        "filename": "doc/source/install/install.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66de2c1b_4005e509",
       "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
@@ -242,6 +522,24 @@
     },
     {
       "key": {
+        "uuid": "b989bb1e_46e39513",
+        "filename": "doc/source/library/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "I\u0027ll keep it here and we can remove it when the patch goes up if we decide to just use the README.",
+      "parentUuid": "32335878_1396ced7",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03145781_5f043a2b",
         "filename": "doc/source/reference/index.rst",
         "patchSetId": 1
@@ -253,6 +551,24 @@
       "writtenOn": "2017-12-11T18:58:29Z",
       "side": 1,
       "message": "i dont think we will need this so you can remove the refernces folder",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "905a70e9_bfaeb7f1",
+        "filename": "doc/source/reference/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03145781_5f043a2b",
       "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
@@ -276,6 +592,24 @@
     },
     {
       "key": {
+        "uuid": "15be827a_63b9e627",
+        "filename": "doc/source/user/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62e99b00_85c7e6d5",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0320fe30_ed6ea431",
         "filename": "networking_vhost_vfio/tests/test_test.py",
         "patchSetId": 1
@@ -293,6 +627,24 @@
     },
     {
       "key": {
+        "uuid": "98e1bc64_2d301c6b",
+        "filename": "networking_vhost_vfio/tests/test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "I moved this to base and used oslotest which ~should~ pass by default.",
+      "parentUuid": "0320fe30_ed6ea431",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "288b96d6_e3f5bcb9",
         "filename": "releasenotes/source/conf.py",
         "patchSetId": 1
@@ -304,6 +656,24 @@
       "writtenOn": "2017-12-11T18:58:29Z",
       "side": 1,
       "message": "we can delete every thin below this.",
+      "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c1634e2_fc74761f",
+        "filename": "releasenotes/source/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-12T16:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "288b96d6_e3f5bcb9",
       "revId": "aa04eebbe20a4e7f19f666b7f0b84067867703d6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
