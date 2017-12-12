@@ -1,0 +1,1 @@
+oslo.privsep>=1.23.0 # Apache-2.0
