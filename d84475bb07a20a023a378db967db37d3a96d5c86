@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12001a89_6a157053",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-13T15:25:03Z",
+      "side": 1,
+      "message": "im not sure this is correct based on https://github.com/torvalds/linux/blob/master/Documentation/vfio-mediated-device.txt#L318\n\nim not sure if /sys/class/mdev_bus/ will only contain devices for created mdevs or if all devices capable of providing mdevs will be listed.",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "d84475bb07a20a023a378db967db37d3a96d5c86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98a71bc5_b55cb47b",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-13T15:25:03Z",
+      "side": 1,
+      "message": "looking at https://github.com/torvalds/linux/blob/master/Documentation/vfio-mediated-device.txt#L401 it looks like you can also just remove devices by uuid\n\ncan you add a second function to do that as it will be more friendly to use. e.g. \ndef remove_device_by_uuid(uuid)\n# echo 1 \u003e /sys/bus/mdev/devices/\u003cuuid\u003e/remove\nwhich will generate the path internally.",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "d84475bb07a20a023a378db967db37d3a96d5c86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
