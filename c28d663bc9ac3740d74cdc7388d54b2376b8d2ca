@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11cab8c1_f60feaf8",
+        "filename": "networking_vhost_vfio/mdev/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "I think this __init__.py file can be kept empty, otherwise we\u0027ll need to add this to all the __init__ files to be consistent!",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14bbf795_410ca91c",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "Should these be logged as warnings or as errors?\nIs it an error if the wrong phys_dev is specified?",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab8bd47f_a6001a7c",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "If dev_types normally returns a list, should this not return a list instead so that it\u0027s still iterable?",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fc4f51d_6967552d",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on list",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 27
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4173f1e_d37fd769",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on list",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 22
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "197d8eab_72db0479",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "This is going to be a string correct?\nWould an empty string be better?",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 20
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c35cf2bd_d60df5dc",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on string",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 14
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04e91982_f441150b",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on string",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 15
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eec5a7a0_a5f8b6c8",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on string",
+      "range": {
+        "startLine": 145,
+        "startChar": 18,
+        "endLine": 145,
+        "endChar": 22
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdb03efd_c73b8be7",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on list",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 25
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "784369d2_b0b9b085",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2017-12-13T10:15:53Z",
+      "side": 1,
+      "message": "ditto on string",
+      "range": {
+        "startLine": 181,
+        "startChar": 16,
+        "endLine": 181,
+        "endChar": 20
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
