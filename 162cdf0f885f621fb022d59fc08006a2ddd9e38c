@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d768b6aa_0be7a1e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-14T16:00:13Z",
+      "side": 1,
+      "message": "- TODO extend docs.",
+      "revId": "162cdf0f885f621fb022d59fc08006a2ddd9e38c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
