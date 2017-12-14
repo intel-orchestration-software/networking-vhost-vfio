@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff03386a_3978d434",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-14T15:59:27Z",
+      "side": 1,
+      "message": "- TODO add sample local.conf\n- TODO start GSG",
+      "revId": "4caa168fcd3e87efad3c979cb6b611cb9fa23c65",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
