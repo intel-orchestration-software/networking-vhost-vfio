@@ -1,0 +1,5 @@
+#!/bin/bash
+
+function vhost_vfio_config_update {
+	sudo -EH crudini --set "${NEUTRON_CORE_PLUGIN_CONF}" "agent" "${VHOST_VFIO_AGENT_TYPE}"
+}
