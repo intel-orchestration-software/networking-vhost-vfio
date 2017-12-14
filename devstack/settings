@@ -25,6 +25,9 @@ fi
 # see https://github.com/intel-orchestration-software/neutron/blob/master/neutron/conf/plugins/ml2/drivers/ovs_conf.py#L141-L143
 VHOST_VFIO_AGENT_TYPE=${VHOST_VFIO_AGENT_TYPE:-"ovs-vhost-vfio"}
 
+if [ ! "$Q_ML2_PLUGIN_MECHANISM_DRIVERS" =~ "ovs-vhost-vfio" ]; then
+    Q_ML2_PLUGIN_MECHANISM_DRIVERS += ",ovs-vhost-vfio"
+fi
 
 if [ "$VERBOSE" == "False" ]; then
     # turn off debugging again
