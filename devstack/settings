@@ -1,0 +1,33 @@
+if [ "$VERBOSE" == "False" ]; then
+    # allow local debugging
+    set -o xtrace
+fi
+
+NETWORKING_VHOST_VFIO_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )
+VHOST_VFIO_REPO_ENABLE=$(trueorfalse True VHOST_VFIO_REPO_ENABLE)
+
+
+if [ "${VHOST_VFIO_REPO_ENABLE}" == "True" ]; then
+
+NEUTRON_REPO="https://github.com/intel-orchestration-software/neutron"
+NEUTRON_BRANCH="vhost-vfio"
+
+NOVA_REPO="https://github.com/intel-orchestration-software/nova"
+NOVA_BRANCH="vhost-vfio"
+
+LIBS_FROM_GIT="neutron-lib"
+NEUTRON_LIB_REPO="https://github.com/intel-orchestration-software/neutron-lib"
+NEUTRON_LIB_BRANCH="vhost-vfio"
+
+fi
+
+# name used by ovs l2 to set agent type in agent report.
+# see https://github.com/intel-orchestration-software/neutron/blob/master/neutron/conf/plugins/ml2/drivers/ovs_conf.py#L141-L143
+VHOST_VFIO_AGENT_TYPE=${VHOST_VFIO_AGENT_TYPE:-"ovs-vhost-vfio"}
+
+
+if [ "$VERBOSE" == "False" ]; then
+    # turn off debugging again
+    set +o xtrace
+fi
+
