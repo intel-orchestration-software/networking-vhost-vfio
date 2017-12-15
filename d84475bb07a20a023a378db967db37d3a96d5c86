@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c824e34f_3894f526",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Ok I see what you are saying, from that I think it should be: /sys/devices/virtual/?",
+      "parentUuid": "12001a89_6a157053",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "d84475bb07a20a023a378db967db37d3a96d5c86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98a71bc5_b55cb47b",
         "filename": "networking_vhost_vfio/mdev/mdev.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-13T15:25:03Z",
       "side": 1,
       "message": "looking at https://github.com/torvalds/linux/blob/master/Documentation/vfio-mediated-device.txt#L401 it looks like you can also just remove devices by uuid\n\ncan you add a second function to do that as it will be more friendly to use. e.g. \ndef remove_device_by_uuid(uuid)\n# echo 1 \u003e /sys/bus/mdev/devices/\u003cuuid\u003e/remove\nwhich will generate the path internally.",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "d84475bb07a20a023a378db967db37d3a96d5c86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb444e43_3b8e65a9",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Done\nAlso added in the same for device type and attributes as well as per https://github.com/torvalds/linux/blob/486088bc4689f826b80aa317b45ac9e42e8b25ee/Documentation/vfio-mediated-device.txt#L258\nI\u0027m wondering if I need the other functions at all?",
+      "parentUuid": "98a71bc5_b55cb47b",
       "range": {
         "startLine": 187,
         "startChar": 4,
