@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c6103e50_93b3810e",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-15T15:33:24Z",
+      "side": 1,
+      "message": "i think it should either be passed in as a seperate paramater or be part of the phys_dev\n\nfor the examplle serial prot mdev driver they would be on the virtual bus  /sys/devices/virtual/ but for phyical devices they could be on  /sys/bus/pci/devices /sys/bus/usb/devices or\n/sys/bus/sata/devices depending on the type of device and how its actully connected.",
+      "parentUuid": "c824e34f_3894f526",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "d84475bb07a20a023a378db967db37d3a96d5c86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98a71bc5_b55cb47b",
         "filename": "networking_vhost_vfio/mdev/mdev.py",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Done\nAlso added in the same for device type and attributes as well as per https://github.com/torvalds/linux/blob/486088bc4689f826b80aa317b45ac9e42e8b25ee/Documentation/vfio-mediated-device.txt#L258\nI\u0027m wondering if I need the other functions at all?",
       "parentUuid": "98a71bc5_b55cb47b",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "d84475bb07a20a023a378db967db37d3a96d5c86",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bcc9f6f_4d83e90b",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2017-12-15T15:33:24Z",
+      "side": 1,
+      "message": "i guess we will see when we go to use them. we can extend or contract the lib as we discover what form is more useful",
+      "parentUuid": "cb444e43_3b8e65a9",
       "range": {
         "startLine": 187,
         "startChar": 4,
