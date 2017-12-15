@@ -49,6 +49,54 @@
     },
     {
       "key": {
+        "uuid": "3848f7a4_e8cafec2",
+        "filename": "networking_vhost_vfio/mdev/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaacf7be_bfd1beb0",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "101c2af3_8495b6d5",
+        "filename": "networking_vhost_vfio/mdev/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11cab8c1_f60feaf8",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14bbf795_410ca91c",
         "filename": "networking_vhost_vfio/mdev/mdev.py",
         "patchSetId": 2
@@ -83,6 +131,54 @@
       "writtenOn": "2017-12-13T12:27:33Z",
       "side": 1,
       "message": "i would actully say this should be LOG.info\nits not an error if a device does not support mdevs as we might use this fuction to determin that.",
+      "parentUuid": "14bbf795_410ca91c",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b343e5ce_a39cdd46",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61016ba1_11e811d7",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1df5a6a4_d1f75441",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "14bbf795_410ca91c",
       "range": {
         "startLine": 36,
@@ -131,6 +227,30 @@
       "side": 1,
       "message": "yes this should be an empty list so that it can be directly passed to a for without requireing an if.",
       "parentUuid": "ab8bd47f_a6001a7c",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "c28d663bc9ac3740d74cdc7388d54b2376b8d2ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "473cc8c3_cc9eeaa3",
+        "filename": "networking_vhost_vfio/mdev/mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2017-12-15T09:00:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0d551a4_2035bc9e",
       "range": {
         "startLine": 37,
         "startChar": 8,
