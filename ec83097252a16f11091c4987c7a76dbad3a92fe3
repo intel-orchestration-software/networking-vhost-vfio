@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d8c05a9_a4a9bce3",
+        "filename": "networking_vhost_vfio/mdev/privsep.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "This seems to be importing the python module \"enum\" but it isn\u0027t in our test-requirements, could you add it in please?\nIt might work with osloprivsep like in the requirements file.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e128fb57_c5b688f7",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "Nit Capital M",
+      "range": {
+        "startLine": 32,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "075f9593_fff9ec14",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "Remove or add a description of the module being tested and it\u0027s intended use.",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 50
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c89bf7fc_8e4012a4",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "I think having a return_value for listdir would be good to make sure everything working as expected.\nJust have a few Strings declared at the top of the file that would emulate the expected output of a listdir call.\n\nIt might also help to have some negative testing, set the return value to something your sure will fail and maybe mock the log call to make sure the message being returned is what you expect.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a20aedb2_7772f146",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "In relation to the next comment, you can manually set the return_value in this decorator, it\u0027s a bit better to make sure there is nothing left to chance in the tests.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be4e94d2_0892507e",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "This can be wrapped to the previous line (the line would be 79 characters long).",
+      "range": {
+        "startLine": 47,
+        "startChar": 54,
+        "endLine": 48,
+        "endChar": 60
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "540eb3af_808af443",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "This should be a constant return value, can you type the expected value in rather than feeding it from path.join.return_value?\nIn the same way you have done above and below this call.",
+      "range": {
+        "startLine": 49,
+        "startChar": 35,
+        "endLine": 49,
+        "endChar": 57
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5fadd7c_fb0bdedc",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 59,
+        "startChar": 54,
+        "endLine": 60,
+        "endChar": 60
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d63dbbd3_cb749bd2",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47c7d420_b5e17f7e",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 81,
+        "startChar": 37,
+        "endLine": 81,
+        "endChar": 60
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfadc84d_39b31a39",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-01-08T17:04:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 58
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
