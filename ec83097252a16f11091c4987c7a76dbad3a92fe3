@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "38b1589d_5df7e160",
+        "filename": "networking_vhost_vfio/mdev/privsep.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-09T18:25:54Z",
+      "side": 1,
+      "message": "we should not need to import any of privseps requirement our selves that should be done by depending on oslo.privesep which is already in the patch.",
+      "parentUuid": "7d8c05a9_a4a9bce3",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "ec83097252a16f11091c4987c7a76dbad3a92fe3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e128fb57_c5b688f7",
         "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
         "patchSetId": 5
