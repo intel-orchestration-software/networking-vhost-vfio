@@ -143,120 +143,63 @@ class MdevTestCase(base.BaseTestCase):
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "read")
-    @mock.patch.object(os, "path")
-    def test_available_dev_invalid(self, path, read, LOG):
+    def test_available_dev_invalid(self, read, LOG):
         """Test failure to return no. of available mdev devices."""
         instances = mdev.available_devices(DEV, TYPE_ID)
 
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "available_instances")
+        # Check the return value of the function
         LOG.info.assert_called_with(
             "Failed to discover all available instances: %s", mock.ANY)
         self.assertIsNone(instances)
         read.assert_not_called()
 
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "open")
-    @mock.patch.object(os, "path")
-    def test_available_dev_valid(self, path, os_open, read, LOG):
+    def test_available_dev_valid(self):
         """Test returning no. of available mdev devices."""
-        # Mock the file for testing
-        os_file = os.path.exists(path.join.return_value)
-        with os.open(os_file) as devices:
-            mdev.available_devices(DEV, TYPE_ID)
-            # Test that the expected information is read from the file
-            devices.read.assert_called()
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "available_instances")
-        LOG.info.assert_called_once_with(
-            "Reading available instances for mdev, %s", "dev_type_id")
+        # TODO(helenam100): Include a valid test for available instances
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "read")
-    @mock.patch.object(os, "path")
-    def test_dev_type_api_invalid(self, path, read, LOG):
+    def test_dev_type_api_invalid(self, read, LOG):
         """Test failure to get api of mdev device type."""
         api = mdev.device_type_api(DEV, TYPE_ID)
 
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "device_api")
+        # Check the return value of the function
         LOG.info.assert_called_with("Failed to return device API: %s",
                                     mock.ANY)
         self.assertIsNone(api)
         read.assert_not_called()
 
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "open")
-    @mock.patch.object(os, "path")
-    def test_dev_type_api_valid(self, path, os_open, read, LOG):
+    def test_dev_type_api_valid(self):
         """Test getting api of mdev device type."""
-        # Mock the file for testing
-        os_file = os.path.exists(path.join.return_value)
-        with os.open(os_file) as api:
-            mdev.device_type_api(DEV, TYPE_ID)
-            # Test that the expected information is read from the file
-            api.read.assert_called()
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "device_api")
-        LOG.info.assert_called_with("Getting API of mdev type, %s",
-                                    "dev_type_id")
+        # TODO(helenam100): Include a valid test for device type api
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "read")
-    @mock.patch.object(os, "path")
-    def test_dev_type_name_invalid(self, path, read, LOG):
+    def test_dev_type_name_invalid(self, read, LOG):
         """Test failure to get the name of mdev device."""
         type_name = mdev.device_type_name(DEV, TYPE_ID)
 
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "name")
+        # Check the return value of the function
         LOG.info.assert_called_with("Failed to return device name: %s",
                                     mock.ANY)
         self.assertIsNone(type_name)
         read.assert_not_called()
 
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "open")
-    @mock.patch.object(os, "path")
-    def test_dev_type_name_valid(self, path, os_open, read, LOG):
+    def test_dev_type_name_valid(self):
         """Test getting name of mdev device."""
-        # Mock the file for testing
-        os_file = os.path.exists(path.join.return_value)
-        with os.open(os_file) as names:
-            mdev.device_type_name(DEV, TYPE_ID)
-            # Test that the expected information is read from the file
-            names.read.assert_called()
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "name")
-        LOG.info.assert_called_with("Getting name of mdev type, %s",
-                                    "dev_type_id")
+        # TODO(helenam100): Include a valid test for device type name
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "read")
-    @mock.patch.object(os, "path")
-    def test_dev_type_description_invalid(self, path, read, LOG):
+    def test_dev_type_description_invalid(self, read, LOG):
         """Test failure to get a description of device type."""
         description = mdev.device_type_description(DEV, TYPE_ID)
 
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "description")
+        # Check the return value of the function
         LOG.info.assert_called_with("Failed to return device description: %s",
                                     mock.ANY)
         self.assertEqual("", description)
-        read.asser_not_called()
+        read.assert_not_called()
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "read")
@@ -264,18 +207,7 @@ class MdevTestCase(base.BaseTestCase):
     @mock.patch.object(os, "path")
     def test_dev_type_description_valid(self, path, os_open, read, LOG):
         """Test getting description of device type."""
-        # Mock the file for testing
-        os_file = os.path.exists(path.join.return_value)
-        with os.open(os_file) as descriptions:
-            mdev.device_type_description(DEV, TYPE_ID)
-            # Test that the expected information is read from the file
-            descriptions.read.assert_called()
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "description")
-        LOG.info.assert_called_with("Getting description of mdev type, %s",
-                                    "dev_type_id")
+        # TODO(helenam100): Include a valid test for device type description
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "listdir")
@@ -332,76 +264,6 @@ class MdevTestCase(base.BaseTestCase):
         path.join.assert_called_with("/sys/bus/mdev/devices", "dev_uuid")
         LOG.info.assert_called_once_with("Listing devices attributes.")
         self.assertEqual(['attrib_1', 'attrib_2', 'attrib_3'], attributes)
-
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "path")
-    def test_dev_type_invalid(self, path, read, LOG):
-        """Test failure to get mdev device type with uuid."""
-        mdev_type = mdev.device_type(DEV, TYPE_ID, DEV_UUID)
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "devices", "dev_uuid",
-                                     "mdev_type")
-        LOG.info.assert_called_with("Failed to return device type: %s",
-                                    mock.ANY)
-        self.assertIsNone(mdev_type)
-        read.assert_not_called()
-
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "open")
-    @mock.patch.object(os, "path")
-    def test_dev_type_valid(self, path, os_open, read, LOG):
-        """Test getting mdev device type with uuid."""
-        # Mock the file for testing
-        os_file = os.path.exists(path.join.return_value)
-        with os.open(os_file) as dev_types:
-            mdev.device_type(DEV, TYPE_ID, DEV_UUID)
-            # Test that the expected information is read from the file
-            dev_types.read.assert_called()
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("device", "mdev_supported_types",
-                                     "dev_type_id", "devices", "dev_uuid",
-                                     "mdev_type")
-        LOG.info.assert_called_once_with("Getting mdev device type, %s",
-                                         "dev_uuid")
-
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "path")
-    def test_dev_type_by_uuid_invalid(self, path, read, LOG):
-        """Test failure to get mdev device type with uuid."""
-        mdev_type = mdev.device_type_by_uuid(DEV_UUID)
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("/sys/bus/mdev/devices", "dev_uuid",
-                                     "mdev_type")
-        LOG.info.assert_called_with("Failed to return device type: %s",
-                                    mock.ANY)
-        self.assertIsNone(mdev_type)
-        read.assert_not_called()
-
-    @mock.patch.object(mdev, "LOG")
-    @mock.patch.object(os, "read")
-    @mock.patch.object(os, "open")
-    @mock.patch.object(os, "path")
-    def test_dev_type_by_uuid_valid(self, path, os_open, read, LOG):
-        """Test getting mdev device type with uuid."""
-        # Mock the file for testing
-        os_file = os.path.exists(path.join.return_value)
-        with os.open(os_file) as dev_types:
-            mdev.device_type_by_uuid(DEV_UUID)
-            # Test that the expected information is read from the file
-            dev_types.read.assert_called()
-
-        # Check the file path and the return value of the function
-        path.join.assert_called_with("/sys/bus/mdev/devices", "dev_uuid",
-                                     "mdev_type")
-        LOG.info.assert_called_with("Getting mdev device type with uuid, %s",
-                                    "dev_uuid")
 
     @mock.patch.object(mdev, "LOG")
     @mock.patch.object(os, "write")
