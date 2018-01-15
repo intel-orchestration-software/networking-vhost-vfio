@@ -89,8 +89,8 @@ def available_devices(dev, type_id):
 
     try:
         LOG.info("Reading available instances for mdev, %s", type_id)
-        with os.open(instances_file) as devices:
-            instances = devices.read()
+        devices = open(instances_file)
+        instances = int(devices.readline())
     except Exception as exc:
         LOG.info("Failed to discover all available instances: %s", exc)
 
@@ -98,14 +98,15 @@ def available_devices(dev, type_id):
 
 
 def device_type_api(dev, type_id):
-    """Display VFIO device API of device type."""
+    """Display API of device type."""
     api = None
     api_file = os.path.join(dev, "mdev_supported_types", type_id, "device_api")
 
     try:
         LOG.info("Getting API of mdev type, %s", type_id)
-        with os.open(api_file) as types:
-            api = types.read()
+        with open(api_file) as f_in:
+            dev_api = list(line for line in (l.strip() for l in f_in) if line)
+        api = dev_api[0]
     except Exception as exc:
         LOG.info("Failed to return device API: %s", exc)
 
@@ -119,8 +120,9 @@ def device_type_name(dev, type_id):
 
     try:
         LOG.info("Getting name of mdev type, %s", type_id)
-        with os.open(name_file) as names:
-            name = names.read()
+        with open(name_file) as n_line:
+            dev = list(line for line in (l.strip() for l in n_line) if line)
+        name = dev[0]
     except Exception as exc:
         LOG.info("Failed to return device name: %s", exc)
 
@@ -135,74 +137,13 @@ def device_type_description(dev, type_id):
 
     try:
         LOG.info("Getting description of mdev type, %s", type_id)
-        with os.open(description_file) as descrips:
-            description = descrips.read()
+        with open(description_file) as d_file:
+            des = list(line for line in (l.strip() for l in d_file) if line)
+        description = des[0]
     except Exception as exc:
         LOG.info("Failed to return device description: %s", exc)
 
     return description
-
-
-def device_attributes(dev, type_id, uuid):
-    """List attributes of mediated device."""
-    attributes = []
-    attribute_path = os.path.join(dev, "mdev_supported_types", type_id,
-                                  "devices", uuid)
-
-    try:
-        LOG.info("Listing devices attributes.")
-        for attribute in os.listdir(attribute_path):
-            attributes.append(attribute)
-    except Exception as exc:
-        LOG.info("Failed to list device attributes: %s", exc)
-
-    return attributes
-
-
-def device_attributes_by_uuid(uuid):
-    """List attributes of mediated device with uuid."""
-    attributes = []
-    attribute_path = os.path.join(DEV_PATH, uuid)
-
-    try:
-        LOG.info("Listing devices attributes.")
-        for attribute in os.listdir(attribute_path):
-            attributes.append(attribute)
-    except Exception as exc:
-        LOG.info("Failed to list device attributes: %s", exc)
-
-    return attributes
-
-
-def device_type(dev, type_id, uuid):
-    """Display type supported by mediated device."""
-    mdev_type = None
-    type_file = os.path.join(dev, "mdev_supported_types", type_id, "devices",
-                             uuid, "mdev_type")
-
-    try:
-        LOG.info("Getting mdev device type, %s", uuid)
-        with os.open(type_file) as dev_type:
-            mdev_type = dev_type.read()
-    except Exception as exc:
-        LOG.info("Failed to return device type: %s", exc)
-
-    return mdev_type
-
-
-def device_type_by_uuid(uuid):
-    """Display type supported by mediated device, by uuid."""
-    mdev_type = None
-    type_file = os.path.join(DEV_PATH, uuid, "mdev_type")
-
-    try:
-        LOG.info("Getting mdev device type with uuid, %s", uuid)
-        with os.open(type_file) as dev_type:
-            mdev_type = dev_type.read()
-    except Exception as exc:
-        LOG.info("Failed to return device type: %s", exc)
-
-    return mdev_type
 
 
 @privsep.mdev_context.entrypoint

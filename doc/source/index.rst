@@ -17,6 +17,7 @@ Contents:
    library/index
    configuration/index
    admin/index
+   tests/index
 
 Indices and tables
 ==================
