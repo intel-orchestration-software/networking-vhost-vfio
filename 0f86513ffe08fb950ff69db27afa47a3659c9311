@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c3aa07f_527cd884",
+        "filename": "doc/source/tests/sample_mdev_setup.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-17T16:35:37Z",
+      "side": 1,
+      "message": "fyi you could use -j $(nproc) here or just -j on newer make versions but this is fine too.",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 42
+      },
+      "revId": "0f86513ffe08fb950ff69db27afa47a3659c9311",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5128388d_2453e13a",
+        "filename": "networking_vhost_vfio/tests/functional/test_mdev_with_mtty.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-17T16:35:37Z",
+      "side": 1,
+      "message": "nit you could have used DEV_UUID here but this can be cleaned up later.",
+      "range": {
+        "startLine": 125,
+        "startChar": 35,
+        "endLine": 125,
+        "endChar": 73
+      },
+      "revId": "0f86513ffe08fb950ff69db27afa47a3659c9311",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a73fcc4_8a2cb7f9",
+        "filename": "networking_vhost_vfio/tests/unit/mdev/test_mdev.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-17T16:35:37Z",
+      "side": 1,
+      "message": "we should see if we can normalise this with python six lather or via oslo but this will work.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "0f86513ffe08fb950ff69db27afa47a3659c9311",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
