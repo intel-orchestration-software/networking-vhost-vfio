@@ -96,7 +96,7 @@ class TestSampleMdev(base.BaseTestCase):
     def test_available_devices(self):
         """Test generating the no. of devices that can be created."""
         instances = mdev.available_devices(DEV, TYPE_ID)
-        self.assertEqual(instances, 22)
+        self.assertEqual(instances, 24)
 
     def test_dev_type_api(self):
         """Test generating the device_api of a device type."""
