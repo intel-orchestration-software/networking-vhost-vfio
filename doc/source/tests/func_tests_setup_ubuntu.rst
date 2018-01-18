@@ -1,27 +1,23 @@
-=======================================
-Building Kernel with Sample Mdev Device
-=======================================
+===============================================
+Building Kernel with Sample Mdev Device(Ubuntu)
+===============================================
 
 The following are instructions to compile the kernel with a sample driver
-program to demonstrate how to use the mediated device framework.
+program to demonstrate how to use the mediated device framework, using ubuntu.
 This setup is required to run the functional tests provided in this repository.
 
 Find information on this sample driver here:
 https://github.com/torvalds/linux/blob/master/Documentation/vfio-mediated-device.txt#L303
 
-Requirements
-============
-
-* Internet access
-* Ubuntu 16.04
-
 Set-up
 ======
 
-* Install all of the prerequisites:
+* Install all of the following prerequisites.
+  Ubuntu requirements:
 
     ::
 
+        sudo apt-get update
         sudo apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev
 
 * Clone the linux kernel repo:
@@ -53,7 +49,7 @@ Set-up
 
     ::
 
-        make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
+        make -j deb-pkg LOCALVERSION=-custom
 
   "custom" is a name you are giving the debian files, this can be changed to
   something more meaningful.
@@ -89,7 +85,8 @@ Set-up
   should also be listed in the "/lib/modules/<KERNEL>/modules.dep" file along
   with its dependencies.
 
-* Load the mtty module:
+* Load the mtty module, you may have to do this from the directory containing
+  the mtty.ko file:
 
     ::
 
@@ -101,10 +98,16 @@ Set-up
 
         lsmod | grep mtty
 
-  If the module isn't loaded try installing the module itself again and loading
-  it again:
+Running the tests
+=================
+
+By default the functional tests are skipped, as this sample device is not
+installed by default.
+To run the functional tests via the tox framework use the following command:
 
     ::
 
-        insmod mtty.ko
-        modprobe mtty
+        tox -e functional
+
+This will run the tests, but if you have not loaded the module correctly these
+tests will be skipped even if this commane is run.
