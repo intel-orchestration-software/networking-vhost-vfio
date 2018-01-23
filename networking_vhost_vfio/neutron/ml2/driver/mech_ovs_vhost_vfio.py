@@ -31,6 +31,7 @@ class OVSvHostVFIOMechanismDriver(ml2d.OpenvswitchMechanismDriver):
         super(OVSvHostVFIOMechanismDriver, self).__init__()
         sg_enabled = securitygroups_rpc.is_firewall_enabled()
         hybrid_plug_required = False
+        self.agent_type = AGENT_TYPE
         self.vif_details = {
             portbindings.CAP_PORT_FILTER: sg_enabled,
             portbindings.OVS_HYBRID_PLUG: hybrid_plug_required}
@@ -56,13 +57,13 @@ class OVSvHostVFIOMechanismDriver(ml2d.OpenvswitchMechanismDriver):
         else:
             mdev_path = self.mdev_path(agent, context.current['id'])
             profile = context.current.get(portbindings.PROFILE)
-            type = profile.get(portbindings.VHOST_VFIO_TYPE)
-            parent = profile.get(portbindings.VHOST_VFIO_MDEV_PARENT)
+            type = profile.get(portbindings.VHOST_VFIO_MDEV_TYPE)
+            parent = profile.get(portbindings.VHOST_VFIO_PARENT_DEVICE)
             details = {portbindings.CAP_PORT_FILTER: False,
                        portbindings.OVS_HYBRID_PLUG: False,
                        portbindings.VHOST_VFIO_MDEV_PATH: mdev_path,
-                       portbindings.VHOST_VFIO_MDEV_PARENT: parent,
-                       portbindings.VHOST_VFIO_TYPE: type}
+                       portbindings.VHOST_VFIO_PARENT_DEVICE: parent,
+                       portbindings.VHOST_VFIO_MDEV_TYPE: type}
         details[portbindings.OVS_DATAPATH_TYPE] = a_config.get(
             'datapath_type', a_const.OVS_DATAPATH_SYSTEM)
         return details
