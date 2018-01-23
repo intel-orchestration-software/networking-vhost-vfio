@@ -16,8 +16,8 @@ NOVA_REPO="https://github.com/intel-orchestration-software/nova"
 NOVA_BRANCH="vhost-vfio"
 
 LIBS_FROM_GIT="neutron-lib"
-NEUTRON_LIB_REPO="https://github.com/intel-orchestration-software/neutron-lib"
-NEUTRON_LIB_BRANCH="vhost-vfio"
+GITREPO["neutron-lib"]=${NEUTRON_LIB_REPO:-"https://github.com/intel-orchestration-software/neutron-lib"}
+GITBRANCH["neutron-lib"]=${NEUTRON_LIB_BRANCH:-"vhost-vfio"}
 
 fi
 
