@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8522129c_4e5e1f51",
+        "filename": "networking_vhost_vfio/tests/unit/neutron/ml2/driver/test_mech_ovs_vhost_vfio.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-25T22:08:27Z",
+      "side": 1,
+      "message": "please use the mock decorators instead.",
+      "range": {
+        "startLine": 73,
+        "startChar": 35,
+        "endLine": 73,
+        "endChar": 70
+      },
+      "revId": "81271f8f7b737db592e1f2b5e0c2cd97893a1541",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb0fb49e_2662cc0d",
+        "filename": "networking_vhost_vfio/tests/unit/neutron/ml2/driver/test_mech_ovs_vhost_vfio.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-25T22:08:27Z",
+      "side": 1,
+      "message": "why not use portbindings.VIF_TYPE_OVS",
+      "range": {
+        "startLine": 89,
+        "startChar": 22,
+        "endLine": 89,
+        "endChar": 28
+      },
+      "revId": "81271f8f7b737db592e1f2b5e0c2cd97893a1541",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
