@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82ec430e_8b9f1158",
+        "filename": "doc/source/tests/func_tests_setup_ubuntu.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-25T22:13:57Z",
+      "side": 1,
+      "message": "you dont need the centos requiremetns here.",
+      "range": {
+        "startLine": 23,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 46
+      },
+      "revId": "46f3ca6ff950d7bf2f6e496a74733cab2dbdf0de",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "239e22cc_ffdddddb",
+        "filename": "networking_vhost_vfio/tests/functional/test_mdev_with_mtty.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-01-25T22:13:57Z",
+      "side": 1,
+      "message": "did you change this because its different on centos or was it incorrect before.\n\nit might be better to do a processutil.exec(\"cat /sys/...)\nto get this value and use that value to check what your lib does if this is different per os.",
+      "range": {
+        "startLine": 99,
+        "startChar": 36,
+        "endLine": 99,
+        "endChar": 38
+      },
+      "revId": "46f3ca6ff950d7bf2f6e496a74733cab2dbdf0de",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
