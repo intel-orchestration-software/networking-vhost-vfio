@@ -18,7 +18,7 @@ from oslo_privsep import priv_context
 
 mdev_context = priv_context.PrivContext(
     "networking_vhost_vfio",
-    cfg_section="networking_vhost_vfio_mdev",
+    cfg_section="networking_vhost_vfio_os_vif",
     pypath=__name__ + ".mdev_context",
     capabilities=[c.CAP_DAC_OVERRIDE,
                   c.CAP_FOWNER],
