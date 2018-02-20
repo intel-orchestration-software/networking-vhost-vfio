@@ -16,8 +16,8 @@ NOVA_REPO="https://github.com/intel-orchestration-software/nova"
 NOVA_BRANCH="vhost-vfio"
 
 LIBS_FROM_GIT="neutron-lib"
-GITREPO["neutron-lib"]=${NEUTRON_LIB_REPO:-"https://github.com/intel-orchestration-software/neutron-lib"}
-GITBRANCH["neutron-lib"]=${NEUTRON_LIB_BRANCH:-"vhost-vfio"}
+NEUTRON_LIB_REPO="https://github.com/intel-orchestration-software/neutron-lib"
+NEUTRON_LIB_BRANCH="vhost-vfio"
 
 fi
 
@@ -34,3 +34,21 @@ if [ "$VERBOSE" == "False" ]; then
     set +o xtrace
 fi
 
+VHOST_VFIO_INSTALL=$(trueorfalse False VHOST_VFIO_INSTALL)
+OVS_VM_IP=${OVS_VM_IP:=192.168.1.1}
+OVS_VM_IMG=${OVS_VM_IMG:=''}
+
+# IFC driver install settings
+IFC_REPO=${IFC_REPO:-''}
+IFC_BIN_INSTALL=$(trueorfalse False IFC_BIN_INSTALL)
+
+# QEMU install settings
+QEMU_REPO=${QEMU_REPO:-''}
+QEMU_BIN=${QEMU_BIN:-''}
+
+# Any additional drivers required for setup
+ADDITIONAL_DRIVERS=${ADDITIONAL_DRIVERS:-none}
+ADDITIONAL_DRIVERS_REPO=${ADDITIONAL_DRIVERS_REPO:-none}
+
+# VF Interface
+VF_INTERFACE=${VF_INTERFACE:-none}

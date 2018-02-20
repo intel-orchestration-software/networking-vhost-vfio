@@ -1,0 +1,32 @@
+#!/bin/bash 
+ 
+_XTRACE_ALLOC_VFS_CTL=$(set +o | grep xtrace) 
+if [[ "${ALLOC_VFS_CTL_DEBUG}" == "True" ]]; then 
+    set -o xtrace 
+fi  
+ 
+FULL_PATH=$(realpath "${BASH_SOURCE[0]}") 
+
+function install_ovs_service {
+    cat << EOF | tee "/etc/init.d/alloc_vfs"
+
+[Unit] 
+Description=Allocate VFs for networking_vhost_vfio
+Before=network-pre.target 
+After=syslog.target 
+ 
+[Service] 
+Type=oneshot 
+RemainAfterExit=yes 
+ExecStart=/bin/bash -c "[[ echo 64 | sudo tee /sys/bus/pci/drivers/ifc/0000\:82\:00.0/sriov_numvfs ]]"
+ExecStop=/bin/bash -c "[[ echo 0 | sudo tee /sys/bus/pci/drivers/ifc/0000\:82\:00.0/sriov_numvfs ]]"
+ 
+[Install] 
+WantedBy=multi-user.target 
+
+EOF
+
+    systemctl daemon-reload
+}
+
+${_XTRACE_ALLOC_VFS_CTL}

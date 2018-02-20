@@ -1,5 +1,135 @@
 #!/bin/bash
 
+# if we are installing ovs for vfio_vhost networking we don't install standard ovs packages
+if [ $VHOST_VFIO_INSTALL == 'True' ]; then 
+function _neutron_ovs_base_install_agent_packages { 
+    : # no op 
+} 
+fi
+
 function vhost_vfio_config_update {
 	sudo -EH crudini --set "${NEUTRON_CORE_PLUGIN_CONF}" "agent" "agent_type" "${VHOST_VFIO_AGENT_TYPE}"
+}
+
+function install_networking_vhost_vfio {
+    # Uninstall existing version
+    # Install dependencies
+    set +o errexit
+    if is_ubuntu; then
+        if $(dpkg -s openvswitch-switch 2>&1 | grep installed | grep -v -i "not installed"  &> /dev/null ); then
+            stop_service openvswitch-switch
+            uninstall_package openvswitch-switch openvswitch-datapath-dkms openvswitch-common
+        fi
+        install_package autoconf libtool libfuse-dev screen bison flex
+    else
+        if $(rpm -qa 2>&1 | grep openvswitch &> /dev/null ); then
+            stop_service openvswitch
+            uninstall_package openvswitch
+        fi
+        install_package pciutils autoconf libtool fuse-devel screen bison flex
+    fi
+
+    # This function exits on an error so that errors don't compound and you see
+    # only the first error that occurred.
+    # Removes previously built version of openvswitch
+    lsmod | grep openvswitch > /dev/null && sudo rmmod openvswitch
+    set -o errexit
+
+    # Build/Setup pre-requisites including: ifc driver, services, additional drivers.
+    build_ifc_driver
+    sudo modprobe vfio_pci
+    sudo modprobe vfio_mdev
+    additional_drivers $ADDITIONAL_DRIVERS_REPO $ADDITIONAL_DRIVERS
+
+    # Allocate the VFs
+    allocate_VFs
+    # Create the tap device to connect the ovs vm to
+    OVS_vm_tap_device
+    boot_ovs_vm
+}
+
+function build_ifc_driver(){
+    if [ $IFC_BIN_INSTALL == 'True' ]; then
+        sudo modprobe ifc
+    elif [ -e "$IFC_REPO" ]; then
+        echo "Installing IFC driver from source."
+        # Install pre-requisites
+        install_package pkgconfig chrpath ocaml ocaml-findlib ocaml-findlib-devel ocaml-ocamldoc
+        cd ${DEST}/coccinelle
+        sudo ./autogen
+        sudo ./configure
+        sudo make
+        sudo make install
+        sudo make install-bash
+        # Configure and install IFC driver
+        cd ${IFC_REPO}
+        sudo make
+        sudo modprobe ifc
+    else
+        echo "Nothing to do for ifc driver installation."
+    fi
+}
+
+function additional_drivers(){
+    drivers=$1
+    driver_names=$2
+    if [[ $drivers != none ]]; then
+
+        OIFS=$IFS
+        IFS=','
+
+        # Cleanup and remove previously installed versions of the drivers
+        for DRIVER in $driver_names
+        do
+            if [ `lsmod | grep -o $DRIVER` ]; then
+                sudo rmmod $DRIVER
+            fi
+        done
+
+        # make and install additional drivers
+        for DRIVER in $drivers
+        do
+            sudo make -C $DRIVER clean
+            sudo make -C $DRIVER
+        done
+
+        for DRIVER in $drivers
+        do
+            sudo make -C $DRIVER load
+        done
+    IFS=$OIFS
+    fi
+}
+
+function alloccate_VFs(){
+    # Create the service that will allocate the VFs
+    sudo cp $NETWORKING_VHOST_VFIO_DIR/devstack/vhost-vfio/alloc-vfs-init /etc/init.d/alloc-vfs
+    type systemctl 2>&1 >/dev/null && sudo systemctl daemon-reload
+
+    # Allocate the VFs
+    sudo chmod +x /etc/init.d/alloc-vfs
+    sudo service alloc-vfs init
+}
+
+function OVS_vm_tap_device(){
+    # Create a tap devoce to connect the ovs VM to
+    sudo ip link add ovsbr type bridge
+    sudo ip addr flush dev eth0
+    sudo ip link set eth0 master ovsbr up
+    sudo ip tuntap add dev tap0 user root
+    sudo ip link set tap0 master ovsbr
+    sudo ip link set dev ovsbr up
+    sudo ip link set dev tap0 up
+    ifconfig ovsbr $OVS_VM_IP up
+}
+
+function boot_ovs_vm(){
+    # Boot the VM for OVS, attach to tap device via QEMU
+    qemu-system-x86_64 -name ovs -enable-kvm -pidfile /tmp/.ovs.pid -daemonize \
+    -monitor unix:/tmp/ovs_monitor.sock,server,nowait -net tap,ifname=ovsBr,script=no,downscript=no \
+    -net nic,macaddr=00:00:00:74:29:41,addr=1f -net user,hostfwd=tcp:127.0.0.1:6000-:22 -cpu host \
+    -smp 1 -m 1024 -object memory-backend-file,id=mem,size=1024M,mem-path=/mnt/huge,share=on \
+    -numa node,memdev=mem -mem-prealloc -drive file=$OVS_VM_IMG -vnc :1 -display none \
+    -serial telnet::7000,server,nowait -device e1000,netdev=network0,mac=52:55:00:d1:55:01
+    -netdev tap,id=network0,ifname=tap0,script=no,downscript=no
 }
