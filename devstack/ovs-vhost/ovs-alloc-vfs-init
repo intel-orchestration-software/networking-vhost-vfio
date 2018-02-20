@@ -1,0 +1,31 @@
+#!/bin/bash
+set -o errexit
+set -o xtrace
+
+PCI_ADDR=`ls --ignore={bind,module,unbind,new_id,remove_id,uevent} /sys/bus/pci/drivers/ifc/`
+
+start() {
+    echo 64 | sudo tee /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs
+}
+
+stop() {
+    echo 0 | sudo tee /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs
+}
+
+ See how we were called.
+case "$1" in
+  start)
+   start
+   ;;
+  stop)
+   stop
+   ;;
+  restart)
+   stop
+   start
+   RETVAL=$?
+   ;;
+  *)
+   echo $"Usage: $0 {start|stop|restart}"
+   exit 1
+esac

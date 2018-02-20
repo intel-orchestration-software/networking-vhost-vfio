@@ -1,5 +1,150 @@
 #!/bin/bash
 
+# if we are installing ovs for vfio_vhost networking we don't install standard ovs packages
+if [ $VHOST_VFIO_INSTALL == 'True' ]; then
+function _neutron_ovs_base_install_agent_packages {
+    : # no op
+}
+fi
+
 function vhost_vfio_config_update {
 	sudo -EH crudini --set "${NEUTRON_CORE_PLUGIN_CONF}" "agent" "agent_type" "${VHOST_VFIO_AGENT_TYPE}"
+}
+
+function allocate_VFs {
+    if [ -e /etc/init.d/alloc_vfs ]; then
+        sudo systemctl start ovs-alloc-vfs
+    fi
+}
+
+function deallocate_VFs {
+    if [ -e /etc/init.d/alloc_vfs ]; then
+        sudo systemctl stop ovs-alloc-vfs
+    fi
+}
+
+function start_networking_vhost_vfio_ovs {
+    if [ -e /etc/init.d/net-ovs ]; then
+        sudo systemctl start ovs-net-vhost-vfio
+    fi
+}
+
+function stop_networking_vhost_vfio_ovs {
+    if [ -e /etc/init.d/net-ovs ]; then
+        sudo systemctl stop ovs-net-vhost-vfio
+    fi
+}
+
+function install_networking_vhost_vfio_ovs {
+    # Uninstall existing version
+    # Install dependencies
+    set +o errexit
+    if is_ubuntu; then
+        if $(dpkg -s openvswitch-switch 2>&1 | grep installed | grep -v -i "not installed"  &> /dev/null ); then
+            stop_service openvswitch-switch
+            uninstall_package openvswitch-switch openvswitch-datapath-dkms openvswitch-common
+        fi
+        install_package autoconf libtool libfuse-dev screen bison flex
+    else
+        if $(rpm -qa 2>&1 | grep openvswitch &> /dev/null ); then
+            stop_service openvswitch
+            uninstall_package openvswitch
+        fi
+        install_package pciutils autoconf libtool fuse-devel screen bison flex
+    fi
+
+    # This function exits on an error so that errors don't compound and you see
+    # only the first error that occurred.
+    # Removes previously built version of openvswitch
+    lsmod | grep openvswitch > /dev/null && sudo rmmod openvswitch
+    set -o errexit
+
+    # Build/Setup pre-requisites including: ifc driver, services, flow_driver, ovs
+    build_ifc_driver
+    build_flow_driver
+    build_ovs
+
+    # Create service foe allocating the VFs
+    allocate_VFs_service
+
+    # Setup ovs as a service
+    setup_ovs_service
+}
+
+function build_ifc_driver(){
+    if [ -e "$IFC_BIN_INSTALL" ]; then
+        sudo yum install $IFC_BIN_INSTALL
+        sudo modprobe ifc
+    elif [ -e "$IFC_REPO" ]; then
+        echo "Installing IFC driver from source."
+        # Install pre-requisites
+        install_package pkgconfig chrpath ocaml ocaml-findlib ocaml-findlib-devel ocaml-ocamldoc
+        cd ${DEST}/coccinelle
+        sudo ./autogen
+        sudo ./configure
+        sudo make
+        sudo make install
+        sudo make install-bash
+        # Configure and install IFC driver
+        cd ${IFC_REPO}
+        sudo make
+        cd ifc-0.3.0_8_g5c8a2f8_dirty/src
+        sudo make
+        sudo make install
+        sudo modprobe ifc
+    else
+        echo "Nothing to do for ifc driver installation."
+    fi
+}
+
+function_build_flow_driver() {
+    if [ -e "$FLOW_DRIVER_BIN_INSTALL" ]; then
+        sudo cp $FLOW_DRIVER_BIN_INSTALL /usr/bin/
+    elif [ -e "$FLOW_DRIVER_REPO" ]; then
+        sudo pkill flow_driver
+        cd $FLOW_DRIVER_REPO
+        sudo make
+        sudo cp build/flow_driver /usr/bin
+    else
+        echo "Nothing to do for flow_driver installation"
+    fi
+}
+
+function build_ovs() {
+    if [ -e "$OVS_BIN_INSTALL" ]; then
+        sudo yum install $OVS_BIN_INSTALL
+    elif [ -e "$OVS_REPO" ]; then
+        cd $OVS_REPO
+        git checkout feature-hwoffload-v3
+        sudo automake --add-missing
+        sudo autoreconf
+        sudo ./boot.sh
+        sudo ./configure --with-linux=/lib/modules/'uname -r'/build
+        sudo make
+        sudo make install
+        sudo make modules_install
+        sudo modprobe openvswitch
+    else
+        echo "Nothing to be done for OVS installation."
+    fi
+}
+
+function alloccate_VFs_service(){
+    # Create the service that will allocate the VFs
+    sudo cp $NETWORKING_VHOST_VFIO_DIR/devstack/vhost-vfio/ovs-alloc-vfs-init /etc/init.d/ovs-alloc-vfs
+
+    # Initialize the alloc_VFs service
+    sudo chmod +x /etc/init.d/ovs-alloc-vfs
+    sudo service ovs-alloc-vfs init
+    type systemctl 2>&1 >/dev/null && sudo systemctl daemon-reload
+}
+
+function setup_ovs_service(){
+    # Create the ovs service file
+    sudo cp $NETWORKING_VHOST_VFIO_DIR/devstack/vhost-vfio/ovs-net-vhost-vfio-init /etc/init.d/ovs-net-vhost-vfio
+
+    # Allocate the VFs
+    sudo chmod +x /etc/init.d/ovs-net-vhost-vfio
+    sudo service ovs-net-vhost-vfio init
+    type systemctl 2>&1 >/dev/null && sudo systemctl daemon-reload
 }

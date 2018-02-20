@@ -15,12 +15,21 @@ ERROR_ON_CLONE=False
             case $2 in
                 "pre-install")
                     # cloning source code
-                        echo_summary "Cloning of src files for vhost-vfio not required"
+                    echo_summary "Cloning of src files for vhost-vfio not required"
                 ;;
                 "install")
                     # Perform installation of vhost-vfio
                     sudo -EH yum install -y crudini || sudo -EH apt-get install -y crudini
                     sudo pip install -e "${NETWORKING_VHOST_VFIO_DIR}"
+
+                    if [ $NETWORKING_OVS_INSTALL == 'True' ]; then
+                        echo_summary "Configuring, installing and starting OVS for networking_vhost_vfio"
+                        install_networking_vhost_vfio_ovs
+                        allocate_VFs
+                        start_networking_vhost_vfio_ovs
+                    else
+                        echo_summary "OVS for networking_vhost_vfio will not be installed"
+                    fi
                 ;;
                 "post-config")
                     vhost_vfio_config_update
@@ -32,6 +41,8 @@ ERROR_ON_CLONE=False
         ;;
         "unstack")
             sudo pip uninstall "${NETWORKING_VHOST_VFIO_DIR}"
+            stop_networking_vhost_vfio_ovs
+            deallocate_vfs
         ;;
         "clean")
             # Remove state and transient data

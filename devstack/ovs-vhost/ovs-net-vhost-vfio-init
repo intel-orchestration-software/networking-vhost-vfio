@@ -1,0 +1,189 @@
+#!/bin/bash
+set -o errexit
+set -o xtrace
+MANAGEMENT_PORT=100
+PHY_PORT_START=101
+PHY_PORTS=2
+VM_PORT_START=128
+VM_PORTS=64
+OVS_OFFLOAD_INTERFACE=eth0
+NUM_FLOWS=1000000
+CPU_NUM=0
+
+start(){
+    #Kill and delete any logs from previous run
+    set +o errexit
+    pkill -9 ovsdb-server
+    pkill -9 ovs-vswitchd
+    pkill -9 flow_driver
+    set -o errexit
+    rm -rf /usr/local/etc/openvswitch/conf.db
+    rm -rf /usr/local/etc/openvswitch/.conf.db*
+    rm -rf /usr/local/var/run/openvswitch/*.pid
+    rm -rf /usr/local/var/run/openvswitch/*.ctl
+
+    ulimit -c unlimited
+    ulimit -n 90000 #TODO: Workaround for OvS bug
+
+    load_vfio_pci
+    alloc_hugepages
+
+    # Setup flows using flow_driver for OVS
+    set_flows
+
+    # Setup ovs database and start ovs
+    setup_ovsdb
+
+    start_vswitchd
+}
+
+stop(){
+    set +o errexit
+    pkill -9 ovsdb-server
+    pkill -9 ovs-vswitchd
+    pkill -9 flow_driver
+    set -o errexit
+    rm -rf /usr/local/etc/openvswitch/conf.db
+    rm -rf /usr/local/etc/openvswitch/.conf.db*
+    rm -rf /usr/local/var/run/openvswitch/*.pid
+    rm -rf /usr/local/var/run/openvswitch/*.ctl
+}
+
+free_hugepages(){
+    HUGEPAGE_SIZE=$(grep Hugepagesize /proc/meminfo | awk '{ print $2 }')
+    grep -ws $OVS_HUGEPAGE_MOUNT /proc/mounts > /dev/null
+    if [ $? -ne 0 ]; then
+       echo "Hugepages not mounted, nothing to clean"
+       return 0
+    fi
+    #remove ovs reserved hugepages
+    if [ -d $OVS_HUGEPAGE_MOUNT ]; then
+       sudo rm -rf ${OVS_HUGEPAGE_MOUNT}/rtemap*
+    fi
+
+    #unmount ovs mountpoint
+    sudo umount ${OVS_HUGEPAGE_MOUNT}
+
+    # de-allocate hugepages
+    if [ $OVS_ALLOCATE_HUGEPAGES == 'True' ]; then
+       for d in /sys/devices/system/node/node? ; do
+          echo 0 | sudo tee $d/hugepages/hugepages-${HUGEPAGE_SIZE}kB/nr_hugepages
+       done
+    fi
+
+    if is_ubuntu; then
+        restart_service libvirt-bin
+    else
+        restart_service libvirtd
+    fi
+
+
+}
+
+alloc_hugepages() {
+    HUGEPAGE_SIZE=$(grep Hugepagesize /proc/meminfo | awk '{ print $2 }')
+    sudo mkdir -p $OVS_HUGEPAGE_MOUNT
+
+    if [ $OVS_NUM_HUGEPAGES -eq 0 ]; then
+        die 6 $LINENO "OVS_NUM_HUGEPAGES not set"
+    fi
+    grep -ws $OVS_HUGEPAGE_MOUNT /proc/mounts > /dev/null
+
+    if [ $? -eq 0 ]; then
+        free_hugepages
+    fi
+    #allocate hugepages
+    if [ $OVS_ALLOCATE_HUGEPAGES == 'True' ]; then
+        for d in /sys/devices/system/node/node? ; do
+            echo $OVS_NUM_HUGEPAGES | sudo tee $d/hugepages/hugepages-${HUGEPAGE_SIZE}kB/nr_hugepages
+        done
+    fi
+
+    if is_ubuntu; then
+        qemu_user_id=$(id -u libvirt-qemu)
+        qemu_group_id=$(id -g libvirt-qemu)
+    else
+        qemu_user_id=$(id -u qemu)
+        qemu_group_id=$(id -g qemu)
+    fi
+
+    grep -ws $OVS_HUGEPAGE_MOUNT /proc/mounts > /dev/null
+    if [ $? -ne 0 ] ; then
+        if [ -n "$OVS_HUGEPAGE_MOUNT_PAGESIZE" ]; then
+            sudo mount -t hugetlbfs -o uid=$qemu_user_id,gid=$qemu_group_id,pagesize=$OVS_HUGEPAGE_MOUNT_PAGESIZE  nodev $OVS_HUGEPAGE_MOUNT
+        else
+            sudo mount -t hugetlbfs -o uid=$qemu_user_id,gid=$qemu_group_id  nodev $OVS_HUGEPAGE_MOUNT
+        fi
+    fi
+    if is_ubuntu; then
+        restart_service libvirt-bin
+    else
+        restart_service libvirtd
+    fi
+}
+
+load_vfio_pci(){ 
+    lsmod | grep -ws vfio_pci > /dev/null 
+    if [ ! $? -eq 0 ] ; then 
+        sudo modprobe vfio_pci 
+    fi 
+}
+
+set_flows(){
+    VM_VLANS=($(seq $VM_PORT_START $((VM_PORT_START+VM_PORTS-1))))
+    PHY_VLANS=($(seq $PHY_PORT_START $((PHY_PORT_START+PHY_PORTS-1))))
+    OVS_VLANS=(${VM_VLANS[@]} ${PHY_VLANS[@]})
+    ALL_VLANS=($MANAGEMENT_PORT ${OVS_VLANS[@]})
+    for (( i=1; i <= 256; i++ )); do
+        if [[ -d /sys/class/net/$OVS_OFFLOAD_INTERFACE.$i ]]; then
+            ip link delete $OVS_OFFLOAD_INTERFACE.$i
+        fi
+    done
+
+    # Just creating the VLAN for the Management port
+    if [[ ! -d /sys/class/net/$OVS_OFFLOAD_INTERFACE.$MANAGEMENT_PORT ]]; then
+       ip link add link $OVS_OFFLOAD_INTERFACE name ${OVS_OFFLOAD_INTERFACE}.$MANAGEMENT_PORT type vlan id $MANAGEMENT_PORT
+       ip link set dev ${OVS_OFFLOAD_INTERFACE}.$MANAGEMENT_PORT up
+    fi
+
+    #Start userspace driver
+    taskset -ac $CPU_NUM /usr/bin/flow_driver --flows=$NUM_FLOWS --intf $OVS_OFFLOAD_INTERFACE.$MANAGEMENT_PORT --debug=$DEBUG &
+}
+
+setup_ovsdb(){
+    #Start OvS
+    ovsdb-tool create /usr/local/etc/openvswitch/conf.db \
+            /usr/local/share/openvswitch/vswitch.ovsschema
+    taskset -ac $CPU_NUM ovsdb-server \
+            --remote=punix:/usr/local/var/run/openvswitch/db.sock \
+            --remote=db:Open_vSwitch,Open_vSwitch,manager_options \
+            --pidfile --detach
+    ovs-vsctl --no-wait init
+}
+
+start_vswitchd(){
+    taskset -ac $CPU_NUM ovs-vswitchd --pidfile --detach --mlockall --log-file=/tmp/ovs-vswitchd.log
+    ovs-vsctl set Open_vSwitch . other_config:hw-offload=true
+    ovs-vsctl set Open_vSwitch . other_config:flow-limit=$NUM_FLOWS
+    ovs-vsctl set Open_vSwitch . other_config:n-handler-threads=1
+    ovs-vsctl set Open_vSwitch . other_config:n-revalidator-threads=1
+
+    ovs-vsctl add-port br-ex $OVS_OFFLOAD_INTERFACE -- set interface $OVS_OFFLOAD_INTERFACE type="internal"
+}
+
+case "$1" in
+  start)
+   start
+   ;;
+  stop)
+   stop
+   ;;
+  restart)
+   stop
+   start
+   RETVAL=$?
+   ;;
+  *)
+   echo $"Usage: $0 {start|stop|restart}"
+   exit 1
+esac
