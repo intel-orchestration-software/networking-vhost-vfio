@@ -1,0 +1,38 @@
+[[local|localrc]]
+
+HOST_IP=<HOST_IP_ADDRESS>
+HOST_NAME=<HOST_NAME>
+
+SERVICE_TOKEN=password
+ADMIN_PASSWORD=password
+MYSQL_PASSWORD=$ADMIN_PASSWORD
+RABBIT_PASSWORD=$ADMIN_PASSWORD
+DATABASE_PASSWORD=$ADMIN_PASSWORD
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+
+LOGFILE=$DEST/logs/stack.sh.log
+LOGDAYS=2
+
+GIT_BASE=https://github.com
+
+############################vhost-vfio start######################################
+enable_plugin networking-vhost-vfio /opt/stack/test/networking-vhost-vfio dev-plugin
+
+NETWORKING_OVS_INSTALL=True
+
+############################vhost-vfio end######################################
+
+[[post-config|$NOVA_CONF]]
+[DEFAULT]
+firewall_driver=nova.virt.firewall.NoopFirewallDriver
+enabled_filters = RetryFilter,AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter,SameHostFilter,DifferentHostFilter,PciPassthroughFilter,NUMATopologyFilter
+scheduler_default_filters = RetryFilter,AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter,SameHostFilter,DifferentHostFilter,PciPassthroughFilter,NUMATopologyFilter
+
+[filter_scheduler]
+track_instance_changes = False
+enabled_filters = RetryFilter,AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter,SameHostFilter,DifferentHostFilter,PciPassthroughFilter,NUMATopologyFilter
+scheduler_default_filters = RetryFilter,AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter,SameHostFilter,DifferentHostFilter,PciPassthroughFilter,NUMATopologyFilter
+
+[[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
+[securitygroup]
+firewall_driver = openvswitch
