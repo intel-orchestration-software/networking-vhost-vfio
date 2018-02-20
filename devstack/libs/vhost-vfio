@@ -1,5 +1,356 @@
 #!/bin/bash
 
+# if we are installing ovs for vfio_vhost networking we don't install standard ovs packages
+if [ $VHOST_VFIO_INSTALL == 'True' ]; then
+function _neutron_ovs_base_install_agent_packages {
+    : # no op
+}
+fi
+
 function vhost_vfio_config_update {
 	sudo -EH crudini --set "${NEUTRON_CORE_PLUGIN_CONF}" "agent" "agent_type" "${VHOST_VFIO_AGENT_TYPE}"
+}
+
+function start_ovs_net_vhost_vfio {
+    # Start flow_driver
+    start_flow_driver
+
+    #Start ovsdb
+    start_ovsdb
+
+    # Start vswitchd
+    start_vswitchd
+    sudo ovs-vsctl set Open_vSwitch . other_config:hw-offload=true
+    sudo ovs-vsctl set Open_vSwitch . other_config:flow-limit=$NUM_FLOWS
+    sudo ovs-vsctl set Open_vSwitch . other_config:n-handler-threads=1
+    sudo ovs-vsctl set Open_vSwitch . other_config:n-revalidator-threads=1
+}
+
+function stop_ovs_net_vhost_vfio {
+    # Stop services
+    stop_flow_driver
+    stop_ovsdb
+    stop_vswitchd
+
+    # Disable services
+    disable_services
+}
+
+function disable_services {
+    sudo -EH systemctl disable flow_driver
+    sudo -EH systemctl disable ovsdb-net-vhost-vfio
+    sudo -EH systemctl disable vswitchd-net-vhost-vfio
+
+    # Remove service files
+    sudo rm -f /etc/systemd/system/ovsdb-net-vhost-vfio.service
+    sudo rm -f /etc/systemd/system/flow_driver.service
+    sudo rm -f /etc/systemd/system/vswitchd-net-vhost-vfio.service
+}
+
+function allocate_VFs {
+    allocate_VFs_service     
+    sudo -EH systemctl start ovs-alloc-vfs
+}
+
+function deallocate_VFs {
+    if [ ! -e "/etc/systemd/system/ovs-alloc-vfs.service" ]; then
+        sudo -EH systemctl stop ovs-alloc-vfs
+        sudo -EH systemctl disable ovs-alloc-vfs
+        sudo rm -f /etc/systemd/system/ovs-alloc-vfs.service
+    fi
+}
+
+function start_ovsdb {
+    setup_ovsdb_service
+    sudo -EH systemctl start ovsdb-net-vhost-vfio
+    sudo ovs-vsctl --no-wait init
+}
+
+function stop_ovsdb {
+    if [ ! -e "/etc/systemd/system/ovsdb-net-vhost-vfio.service" ]; then
+        sudo -EH systemctl stop ovsdb-net-vhost-vfio
+    fi
+}
+
+function start_flow_driver {
+    setup_flow_driver_service
+    sudo -EH systemctl start flow_driver
+}
+
+function stop_flow_driver {
+    if [ ! -e "/etc/systemd/system/flow_driver.service" ]; then
+        sudo -EH systemctl stop flow_driver
+    fi
+}
+
+function start_vswitchd {
+    setup_vswitchd_service
+    sudo -EH systemctl start vswitchd-net-vhost-vfio
+}
+
+function stop_vswitchd {
+    if [ ! -e "/etc/systemd/system/vswitchd-net-vhost-vfio.service" ]; then
+        sudo -EH systemctl stop vswitchd-net-vhost-vfio
+    fi
+}
+
+function install_networking_vhost_vfio_ovs {
+    # Uninstall existing version
+    # Install dependencies
+    set +o errexit
+    if is_ubuntu; then
+        if $(dpkg -s openvswitch-switch 2>&1 | grep installed | grep -v -i "not installed"  &> /dev/null ); then
+            stop_service openvswitch-switch
+            uninstall_package openvswitch-switch openvswitch-datapath-dkms openvswitch-common
+        fi
+        install_package autoconf libtool libfuse-dev screen bison flex
+    else
+        if $(rpm -qa 2>&1 | grep openvswitch &> /dev/null ); then
+            stop_service openvswitch
+            uninstall_package openvswitch
+        fi
+        install_package pciutils autoconf libtool fuse-devel screen bison flex
+    fi
+
+    # This function exits on an error so that errors don't compound and you see
+    # only the first error that occurred.
+    # Removes previously built version of openvswitch
+    lsmod | grep openvswitch > /dev/null && sudo -EH rmmod openvswitch
+    set -o errexit
+
+    # Build/Setup pre-requisites including: ifc driver, services, flow_driver, ovs
+    build_ifc_driver
+    build_flow_driver
+    build_ovs
+    install_kernel_modules
+
+    # Create service foe allocating the VFs
+    allocate_VFs_service
+
+    # Setup ovs as a service
+    setup_flow_driver_service
+    setup_ovsdb_service
+    setup_vswitchd_service
+}
+
+function build_ifc_driver {
+    if [ -e "$IFC_BIN_INSTALL" ]; then
+        sudo -EH yum install $IFC_BIN_INSTALL
+        sudo -EH modprobe ifc
+    elif [ -e "$IFC_REPO" ]; then
+        echo "Installing IFC driver from source."
+        # Install pre-requisites: coccinelle
+        install_package pkgconfig chrpath ocaml ocaml-findlib ocaml-findlib-devel ocaml-ocamldoc
+        git_clone 'https://github.com/coccinelle/coccinelle' ${DEST}/coccinelle master
+        cd ${DEST}/coccinelle
+        sudo -EH ./autogen
+        sudo -EH ./configure
+        sudo -EH make clean
+        sudo -EH make
+        sudo -EH make install
+        sudo -EH make install-bash
+        # Configure and install IFC driver
+        cd ${IFC_REPO}
+        sudo -EH make -j $(nproc)
+        cd ifc-*/src
+        sudo -EH make -j $(nproc)
+        sudo -EH make install
+        sudo -EH modprobe ifc
+    else
+        echo "Nothing to do for ifc driver installation."
+    fi
+}
+
+function build_flow_driver {
+    if [ -e "$FLOW_DRIVER_BIN_INSTALL" ]; then
+        sudo -EH cp $FLOW_DRIVER_BIN_INSTALL /usr/bin/
+    elif [ -e "$FLOW_DRIVER_REPO" ]; then
+        cd $FLOW_DRIVER_REPO
+        sudo -EH make -j $(nproc)
+        sudo -EH cp build/flow_driver /usr/bin
+    else
+        echo "Nothing to do for flow_driver installation"
+    fi
+}
+
+function build_ovs {
+    if [ -e "$OVS_BIN_INSTALL" ]; then
+        sudo -EH yum install $OVS_BIN_INSTALL
+    elif [ -e "$OVS_REPO" ]; then
+        get_repo $OVS_REPO $OVS_BRANCH ${DEST}/ovs
+        cd $OVS_REPO
+        sudo -EH ./boot.sh
+        sudo -EH ./configure --with-linux=/lib/modules/`uname -r`/build
+        sudo -EH make clean
+        sudo -EH make -j $(nproc)
+        sudo -EH make install
+        sudo -EH make modules_install
+        sudo -EH modprobe openvswitch
+    else
+        echo "Nothing to be done for OVS installation."
+    fi
+}
+
+function git_update_repo {
+    local git_dest=$1
+    local git_ref=$2
+
+    pushd $git_dest
+    git fetch
+    git checkout -f $git_ref # Clean modified tracked files
+    git clean -d -f # Clean untracked files
+    popd
+}
+
+function clone_repo {
+    local git_remote=$1
+    local git_dest=$2
+    local git_ref=$3
+
+    git_timed clone $git_remote $git_dest
+    pushd $git_dest
+    git checkout -f $git_ref # Clean modified tracked files
+    git clean -d -f # Clean untracked files
+    popd
+}
+
+function get_repo {
+    local git_remote=$1
+    local git_ref=$2
+    local git_dest=$3
+
+    if [ ! -d $git_dest ] || [ "$RECLONE" == True ]; then
+        # If directory exists and should be just refreshed
+        # it's not possible to use devstack git_clone with commit's id
+        if [ -d $git_dest} ]; then
+            git_update_repo $git_dest $git_ref
+        else
+            git_clone $git_remote $git_dest $git_ref
+        fi
+    fi
+}
+
+function install_kernel_modules {
+    MODULE=$OVS_INTERFACE_DRIVER
+
+    # rename to module name
+    if [[ "$OVS_INTERFACE_DRIVER" == "vfio-pci" ]]; then
+        MODULE="vfio_pci"
+    fi
+
+    # remove first if already exists
+    lsmod | grep $MODULE > /dev/null && sudo -EH rmmod $MODULE
+    if [ -e "/etc/modules" ]; then
+        echo -e "# ADDED by OVS, this line +1 will be removed on unstack\n$MODULE" | sudo tee -a /etc/modules
+    else
+        echo "WARNING: Unable to detect type of module autoloading"
+    fi
+}
+
+function setup_ovsdb_service {
+    if [ ! -e "/etc/systemd/system/ovsdb-net-vhost-vfio.service" ]; then
+        cat << EOF | sudo tee "/etc/systemd/system/ovsdb-net-vhost-vfio.service"
+[Unit]
+Description=Ovsdb service for networking_vhost_vfio
+Before=network-pre.target
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c 'ovsdb-tool create /usr/local/etc/openvswitch/conf.db /usr/local/share/openvswitch/vswitch.ovsschema'
+ExecStart=/bin/bash -c 'taskset -ac $CPU_NUM ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach'
+ExecStop=/bin/bash -c 'pkill -9 ovsdb-server'
+ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/etc/openvswitch/conf.db'
+ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/etc/openvswitch/.conf.db*'
+ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/var/run/openvswitch/*.pid'
+ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/var/run/openvswitch/*.ctl'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+        # Initialize the alloc_VFs service
+        type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+    fi
+}
+
+function setup_vswitchd_service {
+    if [ ! -e "/etc/systemd/system/vswitchd-net-vhost-vfio.service" ]; then
+        cat << EOF | sudo tee "/etc/systemd/system/vswitchd-net-vhost-vfio.service"
+[Unit]
+Description=Vswitchd service for networking_vhost_vfio
+Before=network-pre.target
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c 'taskset -ac $CPU_NUM ovs-vswitchd --pidfile --detach --mlockall --log-file=/tmp/ovs-vswitchd.log'
+ExecStart=/bin/bash -c 'ovs-appctl vlog/set ANY:ANY:ERR'
+ExecStop=/bin/bash -c 'pkill -9 ovs-vswitchd'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+        # Initialize the alloc_VFs service
+        type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+    fi
+}
+
+function setup_flow_driver_service {
+    if [ ! -e "/etc/systemd/system/flow_driver.service" ]; then
+        cat << EOF | sudo tee "/etc/systemd/system/flow_driver.service"
+[Unit]
+Description=Flow_driver service for networking_vhost_vfio
+Before=network-pre.target
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+LimitCORE=infinity
+LimitNOFILE=65536
+ExecStartPre=/bin/bash -c '[ ip link list | grep $OVS_OFFLOAD_INTERFACE.$MANAGEMENT_PORT > /dev/null ] || ip link add link $OVS_OFFLOAD_INTERFACE name ${OVS_OFFLOAD_INTERFACE}.$MANAGEMENT_PORT type vlan id $MANAGEMENT_PORT'
+ExecStartPre=/bin/bash -c 'ip link set dev $OVS_OFFLOAD_INTERFACE.$MANAGEMENT_PORT up'
+ExecStart=/bin/bash -c 'taskset -ac $CPU_NUM /usr/bin/flow_driver --flows=$NUM_FLOWS --intf $OVS_OFFLOAD_INTERFACE.$MANAGEMENT_PORT &'
+ExecStop=/bin/bash -c 'pkill -9 flow_driver'
+ExecStop=/bin/bash -c 'ip link delete $OVS_OFFLOAD_INTERFACE.$MANAGEMENT_PORT'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+        # Initialize the alloc_VFs service
+        type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+    fi
+}
+
+function allocate_VFs_service {
+    # Create the service that will allocate the VFs
+    if [ ! -e "/etc/systemd/system/ovs-alloc-vfs.service" ]; then
+        PCI_ADDR=`ls --ignore={bind,module,unbind,new_id,remove_id,uevent} /sys/bus/pci/drivers/ifc/`
+
+        cat << EOF | sudo tee "/etc/systemd/system/ovs-alloc-vfs.service"
+[Unit]
+Description=Allocate VFs for networking_vhost_vfio
+Before=network-pre.target
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/bin/bash -c 'cat /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs | grep 0 > /dev/null'
+ExecStart=/bin/bash -c  '/usr/bin/echo 64 > /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs'
+ExecStop=/bin/bash -c  '/usr/bin/echo 0 > /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+        # Initialize the alloc_VFs service
+        type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+
+    fi
 }
