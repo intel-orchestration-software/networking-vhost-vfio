@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd1a7e74_046ca3db",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1013037
+      },
+      "writtenOn": "2018-03-02T18:07:15Z",
+      "side": 1,
+      "message": "Does this not need to be above install_networking_vhost_vfio?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
