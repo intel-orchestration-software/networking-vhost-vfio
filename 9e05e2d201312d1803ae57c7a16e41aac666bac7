@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f1a1e29_84f3a269",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "when we need modifed qemu again we will delegate this to the libvirt qeum devstack plugin instead so this can be removed.",
+      "range": {
+        "startLine": 9,
+        "startChar": 31,
+        "endLine": 9,
+        "endChar": 36
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd1a7e74_046ca3db",
         "filename": "devstack/libs/vhost-vfio",
         "patchSetId": 2
@@ -18,6 +41,214 @@
         "startChar": 0,
         "endLine": 51,
         "endChar": 25
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bbd593e_61e44de8",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "no this gets souced in the plugin.sh then we invoke the functions later so order of functions in this file does not matter.",
+      "parentUuid": "cd1a7e74_046ca3db",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d1e85f5_a9f7fc23",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "we proably should also do a make install.",
+      "range": {
+        "startLine": 96,
+        "startChar": 7,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e53fb32_5aca8a85",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "we can just invoke install_ovs_service instead we do not need to copy it",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 95
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c22a6224_0dc2b156",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "device",
+      "range": {
+        "startLine": 115,
+        "startChar": 19,
+        "endLine": 115,
+        "endChar": 25
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e4cd703_466208bd",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "we can delete this as we are running ovs on the host.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 1
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "617aaf91_10b4cdef",
+        "filename": "devstack/settings",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "we should not need these anymore",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 28
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50b543b4_dca2bbcd",
+        "filename": "devstack/settings",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "also we will not need this as we can use the default qemu",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb3e145f_066c3cf0",
+        "filename": "devstack/vhost-vfio/alloc-vfs-init",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "this does not need to be in a separate file.so lets just move it to libs/vhost-vfio",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 28
+      },
+      "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e82cfe5d_3894e4e7",
+        "filename": "devstack/vhost-vfio/alloc-vfs-init",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T13:54:18Z",
+      "side": 1,
+      "message": "this should be /etc/systemd/system/ovs-alocate-vfs.service",
+      "range": {
+        "startLine": 11,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 43
       },
       "revId": "9e05e2d201312d1803ae57c7a16e41aac666bac7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
