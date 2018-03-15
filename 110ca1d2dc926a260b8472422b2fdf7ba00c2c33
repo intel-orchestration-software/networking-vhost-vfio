@@ -1,0 +1,803 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "439117a4_25aedc85",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should be /etc/systemd/system/allocate-vfs.service\n\ninit.d is used for system V init not systemd.",
+      "range": {
+        "startLine": 15,
+        "startChar": 12,
+        "endLine": 15,
+        "endChar": 33
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bac1a957_557219ad",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "it would be more correct to check if the file\ndoes not exists.\n\nif it does not create it, enable it and then always call start.",
+      "range": {
+        "startLine": 16,
+        "startChar": 7,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfc2eda8_1f6d6588",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "same as above all the /etc/init.d location should be changed\nto /etc/systemd/system\n\nalso the convention for service names in systemd is to use\nhyphens not underscores.",
+      "range": {
+        "startLine": 21,
+        "startChar": 12,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "049c5e7c_261ec9c6",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "technically the rest of the code does not support ubunut currently so this is not stictly needed but im fine with keeping it.",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 8
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9b330f1_b0407539",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "there is a devstack function for sudo with preserving the enviornments that we should use instead.\nat the very least this should be sudo -EH to keep proxyies working propperly.",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 12
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac7ab073_50ff646e",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "make -j $(nproc)",
+      "range": {
+        "startLine": 90,
+        "startChar": 7,
+        "endLine": 90,
+        "endChar": 17
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21021f6d_e72c8e3c",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this is fragile can we do this in a more generic way\ne.g. cd ifc-*/src or something",
+      "range": {
+        "startLine": 91,
+        "startChar": 15,
+        "endLine": 91,
+        "endChar": 37
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f7afa7b_38156c6e",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "make -j $(nproc)",
+      "range": {
+        "startLine": 92,
+        "startChar": 8,
+        "endLine": 92,
+        "endChar": 17
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76569c24_acac75a6",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "make -j $(nproc)",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 17
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c592993c_2df91048",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "i would like to reuse the git functions from \nhttps://github.com/openstack/devstack-plugin-libvirt-qemu/blob/master/devstack/libs/libvirt#L10-L69\ninstead of doing this manually.",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 41
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb344f60_ace70bc3",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "i think you should be able to skip this\n\nboot.sh will handle this for us",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 23
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57002545_d3ebda25",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "make -j $(nproc)",
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fa9bf16_64e206f3",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "currently you are creating init.d service files these need to be converted to systemd service files.",
+      "range": {
+        "startLine": 132,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 30
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44afd098_faa0a569",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "systemd service files should not be executable",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 43
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e58216d_642a3deb",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should not be part of start.",
+      "range": {
+        "startLine": 16,
+        "startChar": 3,
+        "endLine": 23,
+        "endChar": 47
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02980647_b24283c3",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this will be dont via /etc/modules",
+      "range": {
+        "startLine": 28,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9d7e255_d1667f9e",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "we will do this in via the kernel command line",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 19
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "827f913b_ea20f7fb",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "we should move this to devstack/libs/vhost-vfio",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29b1c617_f401c4b5",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "same move to devstack/libs/vhost-vfio",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 15
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25f77f25_db554c29",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "we will do this on the kernel command line not at runtime so this can all be removed",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 1
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e3a3f7b_50671be9",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "we should add vfio_pci to /etc/modules instead see\nlike this\n\nhttps://github.com/openstack/networking-ovs-dpdk/blob/master/devstack/libs/ovs-dpdk#L567-L582\n\nthat way it will get done at boot time automatically.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 1
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "042c8f90_33b49417",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this is not needed.",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 8
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6cfb235c_88fa004e",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this will be the start command for the ovsdb service",
+      "range": {
+        "startLine": 157,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95d1a412_159386b9",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should be done form devstack/libs/vhost-vfio after starting the ovsdb",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 28
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd2235b5_50455df2",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should be moved to devstack/libs/vhost-vfio and done once during stacking not in the service file.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 1
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18e951d1_46e39b93",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should be a seperate service file.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 14
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1d26aff_0a82cc57",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should be part of setup ovsdb",
+      "range": {
+        "startLine": 166,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 69
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f35862b_2a84a3a6",
+        "filename": "devstack/ovs-vhost/ovs-net-vhost-vfio-init",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this should be done once in devstack/libs/vhost-vfio not in the service file.",
+      "range": {
+        "startLine": 171,
+        "startChar": 4,
+        "endLine": 171,
+        "endChar": 107
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9dd54d6_f7b240f6",
+        "filename": "devstack/settings",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 43,
+        "startChar": 51,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d123edc_274ca935",
+        "filename": "devstack/settings",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this is usefully for dev but i dont want to support runtime allocation currently.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b147994a_53f9d40d",
+        "filename": "devstack/settings",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "this can be deleted too.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 44
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a9a6d19e_c4d0ca15",
+        "filename": "doc/source/configuration/local.conf.sample",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "$ADMIN_PASSWORD",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 23
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58f9ef08_aa063743",
+        "filename": "doc/source/configuration/local.conf.sample",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "$ADMIN_PASSWORD",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a61dd38_c2ba2e98",
+        "filename": "doc/source/configuration/local.conf.sample",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "$ADMIN_PASSWORD",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71a5471c_01941a58",
+        "filename": "doc/source/configuration/local.conf.sample",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1013036
+      },
+      "writtenOn": "2018-03-15T20:01:50Z",
+      "side": 1,
+      "message": "thats a bit of a hack. i know why it works but it would be better to not do this and have networking-vhost-vfio clone\ncoccinelle",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 65
+      },
+      "revId": "110ca1d2dc926a260b8472422b2fdf7ba00c2c33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
