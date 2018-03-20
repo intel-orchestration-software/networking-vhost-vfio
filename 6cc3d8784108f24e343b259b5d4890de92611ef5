@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6c04e60_7f237f0f",
+        "filename": "devstack/libs/vhost-vfio",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1013064
+      },
+      "writtenOn": "2018-03-20T17:56:54Z",
+      "side": 1,
+      "message": "TODO: need to double check this part",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 83
+      },
+      "revId": "6cc3d8784108f24e343b259b5d4890de92611ef5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
