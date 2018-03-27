@@ -17,6 +17,7 @@ function start_ovs_net_vhost_vfio {
     start_flow_driver
 
     #Start ovsdb
+    sudo -EH ovsdb-tool create /usr/local/etc/openvswitch/conf.db /usr/local/share/openvswitch/vswitch.ovsschema
     start_ovsdb
 
     # Start vswitchd
@@ -36,6 +37,12 @@ function stop_ovs_net_vhost_vfio {
 
     # Disable services
     disable_services
+
+    # Remove files
+    sudo rm -f /usr/local/etc/openvswitch/conf.db
+    sudo rm -f /usr/local/etc/openvswitch/.conf.db*
+    sudo rm -f /usr/local/var/run/openvswitch/*.pid
+    sudo rm -f /usr/local/var/run/openvswitch/*.ctl
 }
 
 function disable_services {
@@ -273,13 +280,8 @@ After=syslog.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/bash -c 'ovsdb-tool create /usr/local/etc/openvswitch/conf.db /usr/local/share/openvswitch/vswitch.ovsschema'
 ExecStart=/bin/bash -c 'taskset -ac $CPU_NUM ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach'
 ExecStop=/bin/bash -c 'pkill -9 ovsdb-server'
-ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/etc/openvswitch/conf.db'
-ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/etc/openvswitch/.conf.db*'
-ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/var/run/openvswitch/*.pid'
-ExecStop=/bin/bash -c 'sudo rm -rf /usr/local/var/run/openvswitch/*.ctl'
 
 [Install]
 WantedBy=multi-user.target
@@ -287,6 +289,7 @@ EOF
 
         # Initialize the alloc_VFs service
         type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+        sudo -EH systemctl enable ovsdb-net-vhost-vfio
     fi
 }
 
@@ -311,6 +314,7 @@ EOF
 
         # Initialize the alloc_VFs service
         type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+        sudo -EH systemctl enable vswitchd-net-vhost-vfio
     fi
 }
 
@@ -337,6 +341,7 @@ EOF
 
         # Initialize the alloc_VFs service
         type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+        sudo -EH systemctl enable flow_driver
     fi
 }
 
@@ -361,6 +366,7 @@ EOF
 
         # Initialize the alloc_VFs service
         type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
+        sudo -EH systemctl enable management_port
     fi
 }
 
@@ -380,6 +386,7 @@ Type=oneshot
 RemainAfterExit=yes
 ExecStartPre=/bin/bash -c 'cat /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs | grep 0 > /dev/null'
 ExecStart=/bin/bash -c  '/usr/bin/echo 64 > /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs'
+ExecStart=/bin/bash -c '. ${DEST}/networking-vhost-vfio/devstack/libs/blacklist.sh'
 ExecStop=/bin/bash -c  '/usr/bin/echo 0 > /sys/bus/pci/drivers/ifc/$PCI_ADDR/sriov_numvfs'
 
 [Install]
@@ -388,6 +395,6 @@ EOF
 
         # Initialize the alloc_VFs service
         type systemctl 2>&1 >/dev/null && sudo -EH systemctl daemon-reload
-
+        sudo -EH systemctl enable ovs-alloc-vfs
     fi
 }
